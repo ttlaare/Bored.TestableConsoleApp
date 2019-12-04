@@ -7,7 +7,7 @@ namespace ConsoleApp.Tests
 {
     public class ConsoleWrapper : IConsole
     {
-        public List<String> LinesToRead = new List<String>();
+        public List<string> LinesToRead = new List<string>();
 
         public void Write(string message)
         {

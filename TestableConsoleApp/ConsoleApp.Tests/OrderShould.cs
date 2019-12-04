@@ -2,9 +2,9 @@ using NUnit.Framework;
 
 namespace ConsoleApp.Tests
 {
+    // check out https://app.pluralsight.com/library/courses/nunit-3-dotnet-testing-introduction/table-of-contents for info on Nunit tests
     public class OrderShould
     {
-
         [Test]
         [TestCase("1","1",4.4)]
         [TestCase("1", "2",4.9)]
