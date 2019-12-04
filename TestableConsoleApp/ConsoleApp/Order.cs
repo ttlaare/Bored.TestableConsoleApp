@@ -9,7 +9,7 @@ namespace ConsoleApp
     public class Order
     {
         private readonly IConsole console;
-        private List<OrderItemDTO> orderItems = new List<OrderItemDTO>();
+        private readonly List<OrderItemDTO> orderItems = new List<OrderItemDTO>();
         public Order (IConsole console)
         {
             this.console = console;

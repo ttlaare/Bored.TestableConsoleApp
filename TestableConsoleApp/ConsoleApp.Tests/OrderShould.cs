@@ -2,7 +2,7 @@ using NUnit.Framework;
 
 namespace ConsoleApp.Tests
 {
-    // check out https://app.pluralsight.com/library/courses/nunit-3-dotnet-testing-introduction/table-of-contents for info on Nunit tests
+    // check out https://app.pluralsight.com/library/courses/nunit-3-dotnet-testing-introduction/table-of-contents for info on Nunit tests.
     public class OrderShould
     {
         [Test]
@@ -16,7 +16,7 @@ namespace ConsoleApp.Tests
             console.LinesToRead.Add(input1);
             console.LinesToRead.Add(input2);
 
-            var sut = new Order(console);
+            var sut = new Order(console); //sut = System under test.
             sut.PlaceFoodOrder();
             sut.PlaceDrinkOrder();
             var totalPrice = sut.CalculateTotalPrice();
