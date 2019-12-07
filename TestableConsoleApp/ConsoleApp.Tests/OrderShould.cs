@@ -1,27 +1,31 @@
+using FluentAssertions;
 using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace ConsoleApp.Tests
 {
     // check out https://app.pluralsight.com/library/courses/nunit-3-dotnet-testing-introduction/table-of-contents for info on Nunit tests.
     public class OrderShould
     {
+
         [Test]
-        [TestCase("1","1",4.4)]
-        [TestCase("1", "2",4.9)]
-        [TestCase("2", "1",3.90)]
-        [TestCase("2", "2",4.4)]
-        public void CalculateTotalPriceCorrectly(string input1, string input2, double expectedTotalPrice)
+        [TestCaseSource(typeof(OrderShouldTestCases), "TestCases")]
+        public void CalculateTotalPriceCorrectly(List<string> consoleInput, List<string> expectedConsoleOutput, double expectedTotalPrice)
         {
             var console = new ConsoleWrapper();
-            console.LinesToRead.Add(input1);
-            console.LinesToRead.Add(input2);
+            console.LinesToRead = consoleInput;
 
             var sut = new Order(console); //sut = System under test.
             sut.PlaceFoodOrder();
             sut.PlaceDrinkOrder();
             var totalPrice = sut.CalculateTotalPrice();
 
-            Assert.That(totalPrice, Is.EqualTo(expectedTotalPrice).Within(0.004));
+            totalPrice.Should().BeApproximately(expectedTotalPrice, 0.004);
+            console.WrittenLines.Count.Should().Be(expectedConsoleOutput.Count + 1);
+            for (int i = 0; i < expectedConsoleOutput.Count; i++)
+            {
+                console.WrittenLines[i].Should().Be(expectedConsoleOutput[i]);
+            }
         }
     }
 }
