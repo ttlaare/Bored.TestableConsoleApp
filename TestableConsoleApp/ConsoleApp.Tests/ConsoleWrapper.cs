@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
+using System.Text;
 
 namespace ConsoleApp.Tests
 {
@@ -7,25 +7,21 @@ namespace ConsoleApp.Tests
     {
         public List<string> LinesToRead = new List<string>();
 
-        public List<string> WrittenLines { get; private set; } = new List<string> ();
+        public string WrittenLines
+        {
+            get { return stringBuilder.ToString(); }
+        }
 
-        private int writtenlinesIndex = 0;
+        private readonly StringBuilder stringBuilder = new StringBuilder();
 
         public void Write(string message)
         {
-            if (WrittenLines.Any())
-            {
-                WrittenLines.Add(message);
-                writtenlinesIndex++;
-                return;
-            }
-            WrittenLines[writtenlinesIndex] = message;
+            stringBuilder.Append(message);
         }
 
         public void WriteLine(string message)
         {
-            WrittenLines.Add(message);
-            writtenlinesIndex++;
+            stringBuilder.AppendLine(message);
         }
 
         public string ReadLine()

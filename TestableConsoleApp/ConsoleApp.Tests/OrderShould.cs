@@ -1,30 +1,36 @@
+using ApprovalTests;
+using ApprovalTests.Namers;
+using ApprovalTests.Reporters;
 using FluentAssertions;
 using NUnit.Framework;
-using System.Collections.Generic;
+using System.Linq;
 
 namespace ConsoleApp.Tests
 {
     // check out https://app.pluralsight.com/library/courses/nunit-3-dotnet-testing-introduction/table-of-contents for info on Nunit tests.
     public class OrderShould
     {
-
         [Test]
-        [TestCaseSource(typeof(OrderShouldTestCases), "TestCases")]
-        public void CalculateTotalPriceCorrectly(List<string> consoleInput, List<string> expectedConsoleOutput, double expectedTotalPrice)
+        [UseApprovalSubdirectory("OrderShould.ApprovedFiles")]
+        [UseReporter(typeof(DiffReporter))]
+        [TestCase("1,1", 4.4, "Test1", TestName = "Test1")]
+        [TestCase("1,2", 4.9, "Test2", TestName = "Test2")]
+        [TestCase("2,1", 3.9, "Test3", TestName = "Test3")]
+        [TestCase("2,2", 4.4, "Test4", TestName = "Test4")]
+        public void CalculateTotalPriceCorrectly(string consoleInput, double expectedTotalPrice, string testName)
         {
             var console = new ConsoleWrapper();
-            console.LinesToRead = consoleInput;
+            console.LinesToRead = consoleInput.Split(',').ToList();
 
             var sut = new Order(console); //sut = System under test.
             sut.PlaceFoodOrder();
             sut.PlaceDrinkOrder();
             var totalPrice = sut.CalculateTotalPrice();
 
-            totalPrice.Should().BeApproximately(expectedTotalPrice, 0.004);
-            console.WrittenLines.Count.Should().Be(expectedConsoleOutput.Count + 1);
-            for (int i = 0; i < expectedConsoleOutput.Count; i++)
+            totalPrice.Should().BeApproximately(expectedTotalPrice, 0.004); //Fluent assertions: https://app.pluralsight.com/library/courses/fluent-assertions-improving-unit-tests/table-of-contents
+            using (ApprovalResults.ForScenario(testName))
             {
-                console.WrittenLines[i].Should().Be(expectedConsoleOutput[i]);
+                Approvals.Verify(console.WrittenLines); //Approval Tests: https://app.pluralsight.com/course-player?clipId=23302914-f8f9-4e93-94af-c9420fa8e031
             }
         }
     }

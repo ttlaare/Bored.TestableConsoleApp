@@ -1,15 +1,12 @@
 ﻿using ConsoleApp.OrderItemDTOs;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace ConsoleApp
 {
     public class Order
     {
         private readonly IConsole console;
-        private readonly List<OrderItemDTO> orderItems = new List<OrderItemDTO>();
+        private readonly List<OrderItemDto> orderItems = new List<OrderItemDto>();
         public Order (IConsole console)
         {
             this.console = console;
@@ -29,11 +26,11 @@ namespace ConsoleApp
                 switch (consoleOrder)
                 {
                     case "1":
-                        orderItems.Add(new OrderItemDTO() { Name = OrderItemEnum.Hamburger, Price = 2.95 });
+                        orderItems.Add(new OrderItemDto() { Name = OrderItem.Hamburger, Price = 2.95 });
                         orderCompleted = true;
                         break;
                     case "2":
-                        orderItems.Add(new OrderItemDTO() { Name = OrderItemEnum.GrilledSandwich, Price = 2.45 });
+                        orderItems.Add(new OrderItemDto() { Name = OrderItem.GrilledSandwich, Price = 2.45 });
                         orderCompleted = true;
                         break;
                     default:
@@ -56,11 +53,11 @@ namespace ConsoleApp
                 switch (consoleOrder)
                 {
                     case "1":
-                        orderItems.Add(new OrderItemDTO() { Name = OrderItemEnum.Cola, Price = 1.45 });
+                        orderItems.Add(new OrderItemDto() { Name = OrderItem.Cola, Price = 1.45 });
                         orderCompleted = true;
                         break;
                     case "2":
-                        orderItems.Add(new OrderItemDTO() { Name = OrderItemEnum.Juice, Price = 1.95 });
+                        orderItems.Add(new OrderItemDto() { Name = OrderItem.Juice, Price = 1.95 });
                         orderCompleted = true;
                         break;
                     default:
@@ -69,7 +66,6 @@ namespace ConsoleApp
                 }
             }
         }
-
         public double CalculateTotalPrice()
         {
             double result = 0;

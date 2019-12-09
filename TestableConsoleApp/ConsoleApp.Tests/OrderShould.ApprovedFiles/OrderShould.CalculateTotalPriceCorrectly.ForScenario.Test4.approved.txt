@@ -1,0 +1,7 @@
+﻿What would you like to eat?
+Press 1 for a hamburger. Price: 2,95.
+Press 2 for a grilled sandwich. Price: 2,45.
+What would you like to drink?
+Press 1 for a Cola. Price: 1,45.
+Press 2 for juice. Price: 1,95.
+Total price is: 4,40

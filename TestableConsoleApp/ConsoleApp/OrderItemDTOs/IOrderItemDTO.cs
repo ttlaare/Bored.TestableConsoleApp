@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿
 
 namespace ConsoleApp.OrderItemDTOs
 {
-    public interface IOrderItemDTO
+    public interface IOrderItemDto
     {
-        public OrderItemEnum Name { get; set; }
+        public OrderItem Name { get; set; }
         public double Price { get; set; }
 
     }
