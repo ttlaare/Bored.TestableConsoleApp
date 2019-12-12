@@ -2,9 +2,7 @@
 {
     public enum OrderItemType
     {
-        Hamburger,
-        GrilledSandwich,
-        Cola,
-        Juice
+        Food,
+        Drink
     }
 }

@@ -1,6 +1,8 @@
 using ApprovalTests;
 using ApprovalTests.Namers;
 using ApprovalTests.Reporters;
+using ConsoleApp.Helpers;
+using ConsoleApp.OrderItems;
 using FluentAssertions;
 using NUnit.Framework;
 using System.Linq;
@@ -21,12 +23,13 @@ namespace ConsoleApp.Tests
         {
             //Arrange
             var console = new ConsoleWrapper();
+            var repository = Factory.BuildOrderItemRepository();
             console.LinesToRead = consoleInput.Split(',').ToList();
-            var sut = new Order(console); //sut = System under test.
+            var sut = new Order(console, repository); //sut = System under test.
             
             //Act
-            sut.PlaceFoodOrder();
-            sut.PlaceDrinkOrder();
+            sut.PlaceOrder(OrderItemType.Food);
+            sut.PlaceOrder(OrderItemType.Drink);
             var totalPrice = sut.CalculateTotalPrice();
 
             //Assert
