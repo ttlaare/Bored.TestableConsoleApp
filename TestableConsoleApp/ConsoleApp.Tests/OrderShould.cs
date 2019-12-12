@@ -19,14 +19,17 @@ namespace ConsoleApp.Tests
         [TestCase("2,2", 4.4, "Test4", TestName = "Test4")]
         public void CalculateTotalPriceCorrectly(string consoleInput, double expectedTotalPrice, string testName)
         {
+            //Arrange
             var console = new ConsoleWrapper();
             console.LinesToRead = consoleInput.Split(',').ToList();
-
             var sut = new Order(console); //sut = System under test.
+            
+            //Act
             sut.PlaceFoodOrder();
             sut.PlaceDrinkOrder();
             var totalPrice = sut.CalculateTotalPrice();
 
+            //Assert
             totalPrice.Should().BeApproximately(expectedTotalPrice, 0.004); //Fluent assertions: https://app.pluralsight.com/library/courses/fluent-assertions-improving-unit-tests/table-of-contents
             using (ApprovalResults.ForScenario(testName))
             {

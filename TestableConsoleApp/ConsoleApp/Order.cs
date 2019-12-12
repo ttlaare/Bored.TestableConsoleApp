@@ -1,4 +1,4 @@
-﻿using ConsoleApp.OrderItemDTOs;
+﻿using ConsoleApp.OrderItems;
 using System.Collections.Generic;
 
 namespace ConsoleApp
@@ -6,7 +6,7 @@ namespace ConsoleApp
     public class Order
     {
         private readonly IConsole console;
-        private readonly List<OrderItemDto> orderItems = new List<OrderItemDto>();
+        private readonly List<OrderItem> orderItems = new List<OrderItem>();
         public Order (IConsole console)
         {
             this.console = console;
@@ -26,11 +26,11 @@ namespace ConsoleApp
                 switch (consoleOrder)
                 {
                     case "1":
-                        orderItems.Add(new OrderItemDto() { Name = OrderItem.Hamburger, Price = 2.95 });
+                        orderItems.Add(new OrderItem() { Name = OrderItemType.Hamburger, Price = 2.95 });
                         orderCompleted = true;
                         break;
                     case "2":
-                        orderItems.Add(new OrderItemDto() { Name = OrderItem.GrilledSandwich, Price = 2.45 });
+                        orderItems.Add(new OrderItem() { Name = OrderItemType.GrilledSandwich, Price = 2.45 });
                         orderCompleted = true;
                         break;
                     default:
@@ -53,11 +53,11 @@ namespace ConsoleApp
                 switch (consoleOrder)
                 {
                     case "1":
-                        orderItems.Add(new OrderItemDto() { Name = OrderItem.Cola, Price = 1.45 });
+                        orderItems.Add(new OrderItem() { Name = OrderItemType.Cola, Price = 1.45 });
                         orderCompleted = true;
                         break;
                     case "2":
-                        orderItems.Add(new OrderItemDto() { Name = OrderItem.Juice, Price = 1.95 });
+                        orderItems.Add(new OrderItem() { Name = OrderItemType.Juice, Price = 1.95 });
                         orderCompleted = true;
                         break;
                     default:
