@@ -39,7 +39,7 @@ namespace ConsoleApp
                 }
                 if (consoleOrder > orderableItems.Count())
                 {
-                    console.WriteLine($"Invalid input: input is out of range. Please choose a number between 0 and {orderableItems.Count()}.");
+                    console.WriteLine($"Invalid input: input is out of range. Please choose a number between 0 and {orderableItems.Count() + 1}.");
                     continue;
                 }
 
