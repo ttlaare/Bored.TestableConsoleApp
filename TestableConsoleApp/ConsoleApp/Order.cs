@@ -2,28 +2,28 @@
 using ConsoleApp.Repositories;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace ConsoleApp
 {
     public class Order
     {
-        private readonly IConsole console;
         private readonly IOrderItemRepository repository;
         private readonly List<OrderItem> placedOrderItems = new List<OrderItem>();
-        public Order(IConsole console, IOrderItemRepository repository)
+
+        public Order(IOrderItemRepository repository)
         {
-            this.console = console;
             this.repository = repository;
         }
 
         public void PlaceOrder(OrderItemType type)
         {
             const string Message = "What would you like to order?";
-            console.WriteLine(Message);
+            Console.WriteLine(Message);
             var orderableItems = repository.OrderItems.Where(o => o.Type == type);
             for (int i = 0; i < orderableItems.Count(); i++)
-                console.WriteLine($"Press {i+1} for a {orderableItems.ElementAt(i).Name.ToLower()}. " +
+                Console.WriteLine($"Press {i + 1} for a {orderableItems.ElementAt(i).Name.ToLower()}. " +
                     $"Price: {orderableItems.ElementAt(i).Price}.");
 
             int consoleInput;
@@ -31,17 +31,17 @@ namespace ConsoleApp
             {
                 try
                 {
-                    consoleInput = int.Parse(console.ReadLine());
+                    consoleInput = int.Parse(Console.ReadLine());
                     placedOrderItems.Add(orderableItems.ElementAt(consoleInput - 1));
                     break;
                 }
-                catch(ArgumentOutOfRangeException)
+                catch (ArgumentOutOfRangeException)
                 {
-                    console.WriteLine($"Invalid input: input is out of range. Please choose a number between 1 and {orderableItems.Count()}.");
+                    Console.WriteLine($"Invalid input: input is out of range. Please choose a number between 1 and {orderableItems.Count()}.");
                 }
                 catch (FormatException)
                 {
-                    console.WriteLine($"Invalid input: input is not numeric. Please choose a number between 1 and {orderableItems.Count()}.");
+                    Console.WriteLine($"Invalid input: input is not numeric. Please choose a number between 1 and {orderableItems.Count()}.");
                 }
                 catch (Exception e)
                 {
@@ -73,21 +73,21 @@ namespace ConsoleApp
         {
             if (!placedOrderItems.Any())
             {
-                console.WriteLine("You haven't placed an order yet");
+                Console.WriteLine("You haven't placed an order yet");
                 return;
             }
-                
-            console.WriteLine("You ordered:");
+
+            Console.WriteLine("You ordered:");
             foreach (var item in placedOrderItems)
             {
-                console.WriteLine(item.Name);
+                Console.WriteLine(item.Name);
             }
-        } 
+        }
 
         public double CalculateTotalPrice()
         {
             var result = placedOrderItems.Select(o => o.Price).Sum();
-            console.WriteLine($"Total price is: {result.ToString("F")}");
+            Console.WriteLine($"Total price is: {result.ToString("F")}");
             return result;
         }
     }

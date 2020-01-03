@@ -7,10 +7,8 @@ namespace ConsoleApp
     {
         static void Main()
         {
-
             var repository = Factory.BuildOrderItemRepository();
-            var console = new ConsoleWrapper();
-            var order = new Order(console, repository);
+            var order = new Order(repository);
 
             order.PlaceOrder(OrderItemType.Food);
             order.PlaceOrder(OrderItemType.Drink);
