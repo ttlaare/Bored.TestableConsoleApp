@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ConsoleApp
+﻿namespace ConsoleApp
 {
     public interface IConsole
     {

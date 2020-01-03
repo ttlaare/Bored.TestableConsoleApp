@@ -3,6 +3,7 @@ using ApprovalTests.Namers;
 using ApprovalTests.Reporters;
 using ConsoleApp.Helpers;
 using ConsoleApp.OrderItems;
+using ConsoleApp.Repositories;
 using FluentAssertions;
 using NUnit.Framework;
 using System.Linq;
@@ -10,8 +11,21 @@ using System.Linq;
 namespace ConsoleApp.Tests
 {
     // check out https://app.pluralsight.com/library/courses/nunit-3-dotnet-testing-introduction/table-of-contents for info on Nunit tests.
+
+    
+
     public class OrderShould
     {
+        private OrderItemRepository repository;
+        private ConsoleWrapper console;
+
+        [OneTimeSetUp]
+        public void OneTimeSetUp()
+        {
+            repository = Factory.BuildOrderItemRepository();
+            console = new ConsoleWrapper();
+        }
+
         [Test]
         [UseApprovalSubdirectory("OrderShould.ApprovedFiles")]
         [UseReporter(typeof(DiffReporter))]
@@ -22,14 +36,14 @@ namespace ConsoleApp.Tests
         public void CalculateTotalPriceCorrectly(string consoleInput, double expectedTotalPrice, string testName)
         {
             //Arrange
-            var console = new ConsoleWrapper();
-            var repository = Factory.BuildOrderItemRepository();
+            //var console = new ConsoleWrapper();
             console.LinesToRead = consoleInput.Split(',').ToList();
             var sut = new Order(console, repository); //sut = System under test.
             
             //Act
             sut.PlaceOrder(OrderItemType.Food);
             sut.PlaceOrder(OrderItemType.Drink);
+            sut.GetOrderedList();
             var totalPrice = sut.CalculateTotalPrice();
 
             //Assert
@@ -38,6 +52,12 @@ namespace ConsoleApp.Tests
             {
                 Approvals.Verify(console.WrittenLines); //Approval Tests: https://app.pluralsight.com/course-player?clipId=23302914-f8f9-4e93-94af-c9420fa8e031
             }
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            console.Dispose();
         }
     }
 }

@@ -1,8 +1,5 @@
 ﻿using ConsoleApp.OrderItems;
 using ConsoleApp.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ConsoleApp.Helpers
 {

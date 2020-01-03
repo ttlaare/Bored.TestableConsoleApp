@@ -1,15 +1,11 @@
-﻿
-using ConsoleApp.OrderItems;
-using ConsoleApp.Repositories;
-using System;
-using System.Collections.Generic;
+﻿using ConsoleApp.OrderItems;
 using ConsoleApp.Helpers;
 
 namespace ConsoleApp
 {
-    internal class Program
+    static class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
 
             var repository = Factory.BuildOrderItemRepository();
@@ -18,6 +14,7 @@ namespace ConsoleApp
 
             order.PlaceOrder(OrderItemType.Food);
             order.PlaceOrder(OrderItemType.Drink);
+            order.GetOrderedList();
             order.CalculateTotalPrice();
         }
     }
