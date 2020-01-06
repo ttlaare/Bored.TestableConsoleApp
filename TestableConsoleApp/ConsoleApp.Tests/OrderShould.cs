@@ -31,7 +31,7 @@ namespace ConsoleApp.Tests
         public void CalculateTotalPriceCorrectly(string input, double expectedTotalPrice, string testName)
         {
             //Arrange
-            var inputList = input.Split(',').ToList();
+            var inputList = input?.Split(',').ToList();
             var sb = new StringBuilder();
             foreach (var line in inputList)
                 sb.AppendLine(line);

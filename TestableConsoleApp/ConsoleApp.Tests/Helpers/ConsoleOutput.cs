@@ -1,16 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace ConsoleApp.Tests
 {
     //http://www.vtrifonov.com/2012/11/getting-console-output-within-unit-test.html
-    //TODO: Implement IDispossable best practices
     public class ConsoleOutput : IDisposable
     {
-        private StringWriter stringWriter;
-        private TextWriter originalOutput;
+        private readonly StringWriter stringWriter;
+        private readonly TextWriter originalOutput;
+        private bool disposed;
+
 
         public ConsoleOutput()
         {
@@ -26,8 +25,22 @@ namespace ConsoleApp.Tests
 
         public void Dispose()
         {
-            Console.SetOut(originalOutput);
-            stringWriter.Dispose();
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (this.disposed)
+                return;
+
+            if (disposing)
+            {
+                Console.SetOut(originalOutput);
+                stringWriter?.Dispose();
+                originalOutput?.Dispose();
+                disposed = true;
+            }
         }
     }
 }
