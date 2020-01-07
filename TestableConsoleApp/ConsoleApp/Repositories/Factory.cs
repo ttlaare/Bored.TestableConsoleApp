@@ -1,13 +1,12 @@
-﻿using ConsoleApp.OrderItems;
-using ConsoleApp.Repositories;
+﻿using ConsoleApp.Shared.OrderItem;
 
-namespace ConsoleApp.Helpers
+namespace ConsoleApp.Repositories
 {
     public static class Factory
     {
-        public static OrderItemRepository BuildOrderItemRepository()
+        public static OrderItemHardCodedRepository BuildOrderItemRepository()
         {
-            var repository = new OrderItemRepository();
+            var repository = new OrderItemHardCodedRepository();
             repository.AddOrderItem("Hamburger", 2.95, OrderItemType.Food);
             repository.AddOrderItem("Grilled Sandwich", 2.45, OrderItemType.Food);
             repository.AddOrderItem("Cola", 1.45, OrderItemType.Drink);

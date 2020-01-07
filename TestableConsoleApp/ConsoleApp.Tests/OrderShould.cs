@@ -1,11 +1,13 @@
 ﻿using ApprovalTests;
 using ApprovalTests.Namers;
 using ApprovalTests.Reporters;
-using ConsoleApp.Helpers;
-using ConsoleApp.OrderItems;
-using ConsoleApp.Repositories;
+using ConsoleApp.DataLayer;
+using ConsoleApp.Shared.OrderItem;
 using FluentAssertions;
+using Microsoft.Extensions.Configuration;
 using NUnit.Framework;
+using System;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -13,12 +15,15 @@ namespace ConsoleApp.Tests
 {
     public class OrderShould
     {
-        private OrderItemRepository repository;
+        private IOrderItemRepository repository;
+        private static IConfigurationRoot config;
 
+        //Add Test Database
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            repository = Factory.BuildOrderItemRepository();
+            StartUp();
+            repository = CreateRepository();
         }
 
         [Test]
@@ -54,6 +59,19 @@ namespace ConsoleApp.Tests
                     Approvals.Verify(consoleOutput.GetOuput()); //Approval Tests: https://app.pluralsight.com/course-player?clipId=23302914-f8f9-4e93-94af-c9420fa8e031
                 }
             }
+        }
+        public static void StartUp()
+        {
+
+            var builder = new ConfigurationBuilder()
+                    .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+             config = builder.Build();
+        }
+
+        private static OrderRepositoryDapperSql CreateRepository()
+        {
+            return new OrderRepositoryDapperSql(config.GetConnectionString("DefaultConnection"));
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using ConsoleApp.OrderItems;
-using ConsoleApp.Repositories;
+﻿using ConsoleApp.Shared.OrderItem;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -12,6 +11,7 @@ namespace ConsoleApp
         private readonly IOrderItemRepository repository;
         private readonly List<OrderItem> placedOrderItems = new List<OrderItem>();
 
+        //TODO Let user choose if they want to order food or drinks
         public Order(IOrderItemRepository repository)
         {
             this.repository = repository;
@@ -22,7 +22,7 @@ namespace ConsoleApp
         {
             //TODO use resource (manager)
             Console.WriteLine("What would you like to order?");
-            var orderableItems = repository.OrderItems.Where(o => o.Type == type);
+            var orderableItems = repository.GetList().Where(o => o.Type == type);
             for (int i = 0; i < orderableItems.Count(); i++)
             {
                 Console.WriteLine($"Press {i + 1} for a {orderableItems.ElementAt(i).Name.ToLower(CultureInfo.InvariantCulture)}. " +
