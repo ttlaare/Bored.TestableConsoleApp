@@ -17,13 +17,16 @@ namespace ConsoleApp
             this.repository = repository;
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Globalization", "CA1308:Normalize strings to uppercase", Justification = "<Pending>")]
         public void PlaceOrder(OrderItemType type)
         {
             Console.WriteLine("What would you like to order?");
             var orderableItems = repository.OrderItems.Where(o => o.Type == type);
             for (int i = 0; i < orderableItems.Count(); i++)
-                Console.WriteLine($"Press {i + 1} for a {orderableItems.ElementAt(i).Name.ToLower(CultureInfo.CurrentUICulture)}. " +
+            {
+                Console.WriteLine($"Press {i + 1} for a {orderableItems.ElementAt(i).Name.ToLower(CultureInfo.InvariantCulture)}. " +
                     $"Price: {orderableItems.ElementAt(i).Price}.");
+            }
 
             int consoleInput;
             while (true)
