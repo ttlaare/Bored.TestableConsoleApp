@@ -17,7 +17,6 @@ namespace ConsoleApp
             this.repository = repository;
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Globalization", "CA1308:Normalize strings to uppercase", Justification = "<Pending>")]
         public void PlaceOrder(OrderItemType type)
         {
             //TODO use resource (manager)
