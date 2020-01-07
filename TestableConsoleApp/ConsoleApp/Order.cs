@@ -20,8 +20,10 @@ namespace ConsoleApp
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Globalization", "CA1308:Normalize strings to uppercase", Justification = "<Pending>")]
         public void PlaceOrder(OrderItemType type)
         {
+            //TODO use resource (manager)
             Console.WriteLine("What would you like to order?");
             var orderableItems = repository.OrderItems.Where(o => o.Type == type);
+            //TODO Use format
             for (int i = 0; i < orderableItems.Count(); i++)
             {
                 Console.WriteLine($"Press {i + 1} for a {orderableItems.ElementAt(i).Name.ToLower(CultureInfo.InvariantCulture)}. " +
