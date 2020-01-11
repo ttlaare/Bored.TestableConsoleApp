@@ -12,11 +12,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Backlog.xlsx = Backlog.xlsx
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp.Shared", "ConsoleApp.Shared\ConsoleApp.Shared.csproj", "{3EA491E8-EF64-4D16-B725-4BC1782999A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp.Shared", "ConsoleApp.Shared\ConsoleApp.Shared.csproj", "{3EA491E8-EF64-4D16-B725-4BC1782999A4}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "ConsoleApp.Database", "ConsoleApp.Database\ConsoleApp.Database.sqlproj", "{BCBBD3AF-7F74-4503-8D47-99192DDADCEF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp.DataLayer", "ConsoleApp.DataLayer\ConsoleApp.DataLayer.csproj", "{9A3E621E-B2C0-472C-B6B7-9330327A2CB3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp.DataLayer", "ConsoleApp.DataLayer\ConsoleApp.DataLayer.csproj", "{9A3E621E-B2C0-472C-B6B7-9330327A2CB3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

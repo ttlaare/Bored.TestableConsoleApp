@@ -20,10 +20,10 @@ namespace ConsoleApp
             var repository = CreateRepository();
             var resource = new ResourceManager("ConsoleApp.Properties.Resources", Assembly.GetExecutingAssembly());
             var culture = new CultureInfo("nl-NL");
-            Thread.CurrentThread.CurrentUICulture = culture;
-            CultureInfo.DefaultThreadCurrentUICulture = culture;
+            Thread.CurrentThread.CurrentCulture = culture;
+            CultureInfo.DefaultThreadCurrentCulture = culture;
 
-            var order = new Order(repository, resource);
+            var order = new OrderPlacer(repository, resource);
 
             order.PlaceOrder(OrderItemType.Food);
             order.PlaceOrder(OrderItemType.Drink);

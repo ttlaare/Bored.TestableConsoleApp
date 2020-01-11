@@ -17,7 +17,7 @@ using System.Threading;
 
 namespace ConsoleApp.Tests
 {
-    public class OrderShould
+    public class OrderPlacerShould
     {
         private IOrderItemRepository repository;
         private static IConfigurationRoot config;
@@ -47,10 +47,10 @@ namespace ConsoleApp.Tests
 
             var resource = new ResourceManager("ConsoleApp.Properties.Resources", Assembly.Load("ConsoleApp"));
             var culture = new CultureInfo(cultureInput);
-            Thread.CurrentThread.CurrentUICulture = culture;
-            CultureInfo.DefaultThreadCurrentUICulture = culture;
+            Thread.CurrentThread.CurrentCulture = culture;
+            CultureInfo.DefaultThreadCurrentCulture = culture;
 
-            var sut = new Order(repository, resource); //sut = System under test.
+            var sut = new OrderPlacer(repository, resource); //sut = System under test.
 
             //Act
             using (var consoleInput = new ConsoleInput(sb.ToString()))
