@@ -1,7 +1,11 @@
 ﻿using ConsoleApp.DataLayer;
 using ConsoleApp.Shared.OrderItem;
 using Microsoft.Extensions.Configuration;
+using System.Globalization;
 using System.IO;
+using System.Reflection;
+using System.Resources;
+using System.Threading;
 
 namespace ConsoleApp
 {
@@ -14,7 +18,12 @@ namespace ConsoleApp
         {
             StartUp();
             var repository = CreateRepository();
-            var order = new Order(repository);
+            var resource = new ResourceManager("ConsoleApp.Properties.Resources", Assembly.GetExecutingAssembly());
+            var culture = new CultureInfo("nl-NL");
+            Thread.CurrentThread.CurrentUICulture = culture;
+            CultureInfo.DefaultThreadCurrentUICulture = culture;
+
+            var order = new Order(repository, resource);
 
             order.PlaceOrder(OrderItemType.Food);
             order.PlaceOrder(OrderItemType.Drink);

@@ -7,9 +7,13 @@ using FluentAssertions;
 using Microsoft.Extensions.Configuration;
 using NUnit.Framework;
 using System;
+using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Reflection;
+using System.Resources;
 using System.Text;
+using System.Threading;
 
 namespace ConsoleApp.Tests
 {
@@ -29,11 +33,11 @@ namespace ConsoleApp.Tests
         [Test]
         [UseApprovalSubdirectory("OrderShould.ApprovedFiles")]
         [UseReporter(typeof(DiffReporter))]
-        [TestCase("1,1", 4.4, "Test1")]
-        [TestCase("1,2", 4.9, "Test2")]
-        [TestCase("2,1", 3.9, "Test3")]
-        [TestCase("2,2", 4.4, "Test4")]
-        public void CalculateTotalPriceCorrectly(string input, double expectedTotalPrice, string testName)
+        [TestCase("1,1", 4.4, "en-GB","Test1")]
+        [TestCase("1,2", 4.9, "en-GB", "Test2")]
+        [TestCase("2,1", 3.9, "en-GB", "Test3")]
+        [TestCase("2,2", 4.4, "nl-NL", "Test4")]
+        public void CalculateTotalPriceCorrectly(string input, double expectedTotalPrice, string cultureInput, string testName)
         {
             //Arrange
             var inputList = input?.Split(',').ToList();
@@ -41,7 +45,12 @@ namespace ConsoleApp.Tests
             foreach (var line in inputList)
                 sb.AppendLine(line);
 
-            var sut = new Order(repository); //sut = System under test.
+            var resource = new ResourceManager("ConsoleApp.Properties.Resources", Assembly.Load("ConsoleApp"));
+            var culture = new CultureInfo(cultureInput);
+            Thread.CurrentThread.CurrentUICulture = culture;
+            CultureInfo.DefaultThreadCurrentUICulture = culture;
+
+            var sut = new Order(repository, resource); //sut = System under test.
 
             //Act
             using (var consoleInput = new ConsoleInput(sb.ToString()))

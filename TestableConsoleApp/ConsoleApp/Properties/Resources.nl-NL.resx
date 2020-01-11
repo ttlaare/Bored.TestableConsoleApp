@@ -118,13 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ConsoleApp_Order_OrderMessage" xml:space="preserve">
-    <value />
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Resources_en_GB" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources.en-GB.resx;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="Resources_nl_NL" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources.nl-NL.resx;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+    <value>Wat wil je bestellen?</value>
   </data>
 </root>

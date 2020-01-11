@@ -3,25 +3,29 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Resources;
+using System.Threading;
 
 namespace ConsoleApp
 {
     public class Order
     {
         private readonly IOrderItemRepository repository;
+        private readonly ResourceManager resource;
         private readonly List<OrderItem> placedOrderItems = new List<OrderItem>();
 
         //TODO Let user choose if they want to order food or drinks
-        public Order(IOrderItemRepository repository)
+        public Order(IOrderItemRepository repository, ResourceManager resource)
         {
             this.repository = repository;
+            this.resource = resource;
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Globalization", "CA1308:Normalize strings to uppercase", Justification = "<Pending>")]
         public void PlaceOrder(OrderItemType type)
         {
             //TODO use resource (manager)
-            Console.WriteLine("What would you like to order?");
+            Console.WriteLine(resource.GetString("ConsoleApp_Order_OrderMessage", Thread.CurrentThread.CurrentUICulture));
             var orderableItems = repository.GetList().Where(o => o.Type == type);
             for (int i = 0; i < orderableItems.Count(); i++)
             {
