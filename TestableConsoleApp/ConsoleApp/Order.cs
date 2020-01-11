@@ -24,7 +24,6 @@ namespace ConsoleApp
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Globalization", "CA1308:Normalize strings to uppercase", Justification = "<Pending>")]
         public void PlaceOrder(OrderItemType type)
         {
-            //TODO use resource (manager)
             Console.WriteLine(resource.GetString("ConsoleApp_Order_OrderMessage", Thread.CurrentThread.CurrentUICulture));
             var orderableItems = repository.GetList().Where(o => o.Type == type);
             for (int i = 0; i < orderableItems.Count(); i++)
