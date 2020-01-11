@@ -24,19 +24,19 @@ namespace ConsoleApp
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Globalization", "CA1308:Normalize strings to uppercase", Justification = "<Pending>")]
         public void PlaceOrder(OrderItemType type)
         {
-            var orderableItems = repository.GetList().Where(o => o.Type == type); //BL
-            WriteOrderItems();
+            var orderableItems = repository.GetList().Where(o => o.Type == type).ToList(); //BL
+            OrderPlacerHelper.WriteOrderItems(orderableItems, resource);
             ReadOrderFromUser();
 
-            void WriteOrderItems() //UI
-            {
-                Console.WriteLine(resource.GetString("ConsoleApp_Order_OrderMessage", Thread.CurrentThread.CurrentCulture));
-                for (int i = 0; i < orderableItems.Count(); i++)
-                {
-                    Console.WriteLine($"Press {i + 1} for a {orderableItems.ElementAt(i).Name.ToLower(CultureInfo.InvariantCulture)}. " +
-                        $"Price: {orderableItems.ElementAt(i).Price.ToString("F", CultureInfo.CurrentCulture)}.");
-                }
-            }
+            //void WriteOrderItems() //UI
+            //{
+            //    Console.WriteLine(resource.GetString("ConsoleApp_Order_OrderMessage", Thread.CurrentThread.CurrentCulture));
+            //    for (int i = 0; i < orderableItems.Count(); i++)
+            //    {
+            //        Console.WriteLine($"Press {i + 1} for a {orderableItems.ElementAt(i).Name.ToLower(CultureInfo.InvariantCulture)}. " +
+            //            $"Price: {orderableItems.ElementAt(i).Price.ToString("F", CultureInfo.CurrentCulture)}.");
+            //    }
+            //}
 
             void ReadOrderFromUser()//UI
             {
