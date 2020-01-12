@@ -7,7 +7,7 @@ using System.Resources;
 
 namespace ConsoleApp
 {
-    public static class OrderPlacerHelper
+    static class OrderPlacerHelper
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Globalization", "CA1308:Normalize strings to uppercase", Justification = "<Pending>")]
         public static void WriteOrderableItems(List<OrderItem> orderableItems, ResourceManager resource)

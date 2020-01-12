@@ -7,7 +7,7 @@ using System.Resources;
 
 namespace ConsoleApp
 {
-    public class OrderPlacer
+    class OrderPlacer
     {
         private readonly IOrderItemRepository repository;
         private readonly ResourceManager resource;

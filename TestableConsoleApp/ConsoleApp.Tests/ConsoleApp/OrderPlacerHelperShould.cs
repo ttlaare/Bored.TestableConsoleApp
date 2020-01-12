@@ -14,7 +14,7 @@ using System.Resources;
 
 namespace ConsoleApp.Tests
 {
-    public class OrderPlacerHelperShould
+    class OrderPlacerHelperShould
     {
         private ResourceManager resource;
 

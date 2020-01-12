@@ -6,7 +6,7 @@ using System.Threading;
 
 namespace ConsoleApp.Tests.ConsoleApp.Helpers
 {
-    public static class CultureSetter
+    static class CultureSetter
     {
         public static void SetCulture(string cultureInput)
         {

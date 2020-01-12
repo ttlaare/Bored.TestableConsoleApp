@@ -4,7 +4,7 @@ using System.IO;
 namespace ConsoleApp.Tests
 {
     //http://www.vtrifonov.com/2012/11/getting-console-output-within-unit-test.html
-    public class ConsoleOutput : IDisposable
+    class ConsoleOutput : IDisposable
     {
         private readonly StringWriter stringWriter;
         private readonly TextWriter originalOutput;
