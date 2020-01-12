@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ConsoleApp.Tests.ConsoleApp.Helpers
 {
-    public static class ConsoleInputBuilder
+    static class ConsoleInputBuilder
     {
         public static string Build(string input)
         {

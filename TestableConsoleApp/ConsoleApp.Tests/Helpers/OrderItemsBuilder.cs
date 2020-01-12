@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ConsoleApp.Tests.ConsoleApp.Helpers
 {
-    public class OrderItemsBuilder
+    class OrderItemsBuilder
     {
         private readonly List<OrderItem> orderItems = new List<OrderItem>();
 
