@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Resources;
-using System.Threading;
 
 namespace ConsoleApp
 {
@@ -30,7 +29,6 @@ namespace ConsoleApp
 
             void ReadOrderFromUser()//UI
             {
-                int consoleInput;
                 OrderItem placedOrder;
                 while (true)
                 {
@@ -42,11 +40,11 @@ namespace ConsoleApp
                     }
                     catch (ArgumentOutOfRangeException)
                     {
-                        Console.WriteLine($"Invalid input: input is out of range. Please choose a number between 1 and {orderableItems.Count()}.");
+                        Console.WriteLine($"Invalid input: input is out of range. Please choose a number between 1 and {orderableItems.Count}.");
                     }
                     catch (FormatException)
                     {
-                        Console.WriteLine($"Invalid input: input is not numeric. Please choose a number between 1 and {orderableItems.Count()}.");
+                        Console.WriteLine($"Invalid input: input is not numeric. Please choose a number between 1 and {orderableItems.Count}.");
                     }
                     catch (Exception e)
                     {

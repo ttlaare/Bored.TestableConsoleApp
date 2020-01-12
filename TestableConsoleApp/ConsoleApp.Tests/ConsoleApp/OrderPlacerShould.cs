@@ -44,7 +44,9 @@ namespace ConsoleApp.Tests
             var sut = new OrderPlacer(repository, resource); //sut = System under test.
 
             //Act
-            using var consoleInput = new ConsoleInput(consoleStringInput);
+#pragma warning disable S1481 // Unused local variables should be removed
+            using var consoleInput = new ConsoleInput(consoleStringInput); //Exceptions: Unused locally created resources in a using statement are not reported.
+#pragma warning restore S1481 // Unused local variables should be removed
             using var consoleOutput = new ConsoleOutput();
             sut.PlaceOrder(OrderItemType.Food);
             sut.PlaceOrder(OrderItemType.Drink);
