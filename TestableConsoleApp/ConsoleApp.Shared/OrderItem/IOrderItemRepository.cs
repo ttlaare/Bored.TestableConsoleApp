@@ -5,6 +5,6 @@ namespace ConsoleApp.Shared.OrderItem
     public interface IOrderItemRepository
     {
         List<OrderItem> GetList();
-        //TODO GetList(bool,FUNC,WHERE expression)
+        List<OrderItem> GetList(OrderItemType type);
     }
 }

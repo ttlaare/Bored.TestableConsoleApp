@@ -5,7 +5,7 @@ namespace ConsoleApp.Tests
 {
     //http://www.vtrifonov.com/2012/11/getting-console-output-within-unit-test.html
     //https://app.pluralsight.com/player?course=building-dotnet-console-applications-csharp&author=jason-roberts&name=building-dotnet-console-applications-csharp-m1&clip=6&mode=live
-    public class ConsoleInput : IDisposable
+    class ConsoleInput : IDisposable
     {
         private readonly StringReader stringReader;
         private readonly TextReader originalInput;

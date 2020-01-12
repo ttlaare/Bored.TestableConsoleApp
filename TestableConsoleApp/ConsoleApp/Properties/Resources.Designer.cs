@@ -61,7 +61,7 @@ namespace ConsoleApp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to What would you like to order?.
         /// </summary>
         internal static string ConsoleApp_Order_OrderMessage {
             get {

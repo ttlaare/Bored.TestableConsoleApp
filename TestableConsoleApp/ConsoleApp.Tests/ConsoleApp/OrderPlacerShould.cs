@@ -13,10 +13,10 @@ using System.Resources;
 
 namespace ConsoleApp.Tests
 {
-    public class OrderPlacerShould
+    class OrderPlacerShould
     {
         private IOrderItemRepository repository;
-        private static IConfigurationRoot config;
+        private IConfigurationRoot config;
         private ResourceManager resource;
 
         //Add Test Database
@@ -60,16 +60,15 @@ namespace ConsoleApp.Tests
                 Approvals.Verify(consoleOutput.GetOuput()); //Approval Tests: https://app.pluralsight.com/course-player?clipId=23302914-f8f9-4e93-94af-c9420fa8e031
             }
         }
-        public static void StartUp()
+        public void StartUp()
         {
-
             var builder = new ConfigurationBuilder()
                     .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
              config = builder.Build();
         }
 
-        private static OrderRepositoryDapperSql CreateRepository()
+        private OrderRepositoryDapperSql CreateRepository()
         {
             return new OrderRepositoryDapperSql(config.GetConnectionString("DefaultConnection"));
         }

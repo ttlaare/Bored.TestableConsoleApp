@@ -15,13 +15,21 @@ namespace ConsoleApp.DataLayer
 
         public OrderRepositoryDapperSql(string connString)
         {
-            this.db = new SqlConnection(connString);
+            db = new SqlConnection(connString);
         }
 
         public List<OrderItem> GetList()
         {
             var sql = @"SELECT OrderItemName Name, Price, OrderItemTypeId Type FROM OrderItems";
             return this.db.Query<OrderItem>(sql).ToList();
+        }
+
+        public List<OrderItem> GetList(OrderItemType type)
+        {
+            var sql =@"SELECT OrderItemName Name, Price, OrderItemTypeId Type " +
+                    @"FROM OrderItems " +
+                    @"WHERE OrderItemTypeId = @Type";
+            return this.db.Query<OrderItem>(sql, new { type }).ToList();
         }
     }
 }
