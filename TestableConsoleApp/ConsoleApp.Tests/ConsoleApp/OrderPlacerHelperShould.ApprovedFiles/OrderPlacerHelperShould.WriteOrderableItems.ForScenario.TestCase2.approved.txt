@@ -1,0 +1,2 @@
+﻿Wat wil je bestellen?
+Press 1 for a hamburger. Price: 2,95.

@@ -1,0 +1,3 @@
+﻿What would you like to order?
+Press 1 for a hamburger. Price: 2.95.
+Press 2 for a cola. Price: 1.45.

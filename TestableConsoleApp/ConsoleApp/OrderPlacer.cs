@@ -25,28 +25,19 @@ namespace ConsoleApp
         public void PlaceOrder(OrderItemType type)
         {
             var orderableItems = repository.GetList().Where(o => o.Type == type).ToList(); //BL
-            OrderPlacerHelper.WriteOrderItems(orderableItems, resource);
+            OrderPlacerHelper.WriteOrderableItems(orderableItems, resource);
             ReadOrderFromUser();
-
-            //void WriteOrderItems() //UI
-            //{
-            //    Console.WriteLine(resource.GetString("ConsoleApp_Order_OrderMessage", Thread.CurrentThread.CurrentCulture));
-            //    for (int i = 0; i < orderableItems.Count(); i++)
-            //    {
-            //        Console.WriteLine($"Press {i + 1} for a {orderableItems.ElementAt(i).Name.ToLower(CultureInfo.InvariantCulture)}. " +
-            //            $"Price: {orderableItems.ElementAt(i).Price.ToString("F", CultureInfo.CurrentCulture)}.");
-            //    }
-            //}
 
             void ReadOrderFromUser()//UI
             {
                 int consoleInput;
+                OrderItem placedOrder;
                 while (true)
                 {
                     try
                     {
-                        consoleInput = int.Parse(Console.ReadLine()) - 1;
-                        placedOrderItems.Add(orderableItems.ElementAt(consoleInput)); //BL
+                        placedOrder = OrderPlacerHelper.AddOrderByUser(Console.ReadLine(), orderableItems);
+                        placedOrderItems.Add(placedOrder);
                         break;
                     }
                     catch (ArgumentOutOfRangeException)
